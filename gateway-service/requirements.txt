@@ -1,0 +1,5 @@
+flask
+requests
+pika
+pymongo
+flask-pymongo

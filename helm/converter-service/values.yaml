@@ -1,0 +1,26 @@
+replicaCount: 1
+
+image:
+  repository: 887401460535.dkr.ecr.us-east-1.amazonaws.com/video-audio-app/converter-service
+  tag: latest
+  pullPolicy: Always
+
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "250m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+
+env:
+  MONGO_VIDEO_URI: mongodb://root:rootpassword@mongodb:27017/videos?authSource=admin
+  MONGO_MP3_URI: mongodb://root:rootpassword@mongodb:27017/mp3s?authSource=admin
+  RABBITMQ_HOST: rabbitmq
+  VIDEO_QUEUE: video
+  MP3_QUEUE: mp3
+
+hpa:
+  minReplicas: 1
+  maxReplicas: 3
+  cpuUtilization: 70

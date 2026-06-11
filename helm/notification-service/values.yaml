@@ -1,0 +1,25 @@
+replicaCount: 1
+
+image:
+  repository: 887401460535.dkr.ecr.us-east-1.amazonaws.com/video-audio-app/notification-service
+  tag: latest
+  pullPolicy: Always
+
+resources:
+  requests:
+    memory: "64Mi"
+    cpu: "250m"
+  limits:
+    memory: "128Mi"
+    cpu: "500m"
+
+env:
+  RABBITMQ_HOST: rabbitmq
+  MP3_QUEUE: mp3
+  GMAIL_ADDRESS: your-gmail@gmail.com
+  GMAIL_PASSWORD: your-gmail-app-password
+
+hpa:
+  minReplicas: 1
+  maxReplicas: 3
+  cpuUtilization: 70

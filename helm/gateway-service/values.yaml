@@ -1,0 +1,30 @@
+replicaCount: 1
+
+image:
+  repository: 887401460535.dkr.ecr.us-east-1.amazonaws.com/video-audio-app/gateway-service
+  tag: latest
+  pullPolicy: Always
+
+service:
+  port: 5000
+
+resources:
+  requests:
+    memory: "64Mi"
+    cpu: "250m"
+  limits:
+    memory: "128Mi"
+    cpu: "500m"
+
+env:
+  MONGO_VIDEO_URI: mongodb://root:rootpassword@mongodb:27017/videos?authSource=admin
+  MONGO_MP3_URI: mongodb://root:rootpassword@mongodb:27017/mp3s?authSource=admin
+  RABBITMQ_HOST: rabbitmq
+  VIDEO_QUEUE: video
+  MP3_QUEUE: mp3
+  AUTH_SVC_ADDRESS: auth-service:5000
+
+hpa:
+  minReplicas: 1
+  maxReplicas: 3
+  cpuUtilization: 70

@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gateway-ingress
+  namespace: dev
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /login
+        pathType: Prefix
+        backend:
+          service:
+            name: auth-service
+            port:
+              number: 5000
+      - path: /upload
+        pathType: Prefix
+        backend:
+          service:
+            name: gateway-service
+            port:
+              number: 5000
+      - path: /download
+        pathType: Prefix
+        backend:
+          service:
+            name: gateway-service
+            port:
+              number: 5000

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: converter-service
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: converter-service
+  template:
+    metadata:
+      labels:
+        app: converter-service
+    spec:
+      containers:
+      - name: converter-service
+        image: 887401460535.dkr.ecr.us-east-1.amazonaws.com/video-audio-app/converter-service:latest
+        envFrom:
+        - secretRef:
+            name: converter-service-secret
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
