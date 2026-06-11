@@ -17,8 +17,8 @@ resources:
     cpu: "500m"
 
 env:
-  MONGO_VIDEO_URI: mongodb://root:rootpassword@mongodb:27017/videos?authSource=admin
-  MONGO_MP3_URI: mongodb://root:rootpassword@mongodb:27017/mp3s?authSource=admin
+  MONGO_VIDEO_URI: ""
+  MONGO_MP3_URI: ""
   RABBITMQ_HOST: rabbitmq
   VIDEO_QUEUE: video
   MP3_QUEUE: mp3
