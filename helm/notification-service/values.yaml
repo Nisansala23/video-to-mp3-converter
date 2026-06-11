@@ -16,8 +16,8 @@ resources:
 env:
   RABBITMQ_HOST: rabbitmq
   MP3_QUEUE: mp3
-  GMAIL_ADDRESS: your-gmail@gmail.com
-  GMAIL_PASSWORD: your-gmail-app-password
+  GMAIL_ADDRESS: ""
+  GMAIL_PASSWORD: ""
 
 hpa:
   minReplicas: 1
