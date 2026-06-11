@@ -3,10 +3,10 @@ FROM python:3.10-slim-bullseye AS builder
 
 WORKDIR /app
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
+RUN apt-get update --fix-missing \
+    && apt-get install -y --no-install-recommends --fix-missing \
        gcc \
-    && rm -rf /var/lib.apt/lists/*
+    && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir --prefix=/install -r requirements.txt
@@ -16,8 +16,8 @@ FROM python:3.10-slim-bullseye
 
 WORKDIR /app
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
+RUN apt-get update --fix-missing \
+    && apt-get install -y --no-install-recommends --fix-missing \
        ffmpeg \
     && rm -rf /var/lib/apt/lists/*
 
